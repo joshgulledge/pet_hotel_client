@@ -1,14 +1,22 @@
 import {useState} from 'react';
+import {useDispatch} from 'react-redux';
 
 function ManageOwnersForm() {
+  const dispatch = useDispatch();
   const [ownerInput, setOwnerInput] = useState({ first_name: '', last_name: '' });
 
   console.log('ownerInput:', ownerInput)
 
   const handleOwnerSubmit = (event) => {
     event.preventDefault();
-
     console.log('in handleOwnerSubmit');
+
+    dispatch({
+      type: 'ADD_OWNER',
+      payload: ownerInput
+    });
+
+    setOwnerInput({ first_name: '', last_name: '' });
   } // end handleOwnerSubmit
 
 
@@ -26,7 +34,7 @@ function ManageOwnersForm() {
             value={ownerInput.first_name}
           />
         </label>
-        
+
         <label htmlFor="ownerLastNameInput">
           Add owner's last name:
           <input
