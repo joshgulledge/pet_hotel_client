@@ -1,12 +1,17 @@
 import { useSelector } from 'react-redux';
+import './ManageOwnersTable.css'
 
 function ManageOwnersTable() {
 
   const owners = useSelector(store => store.ownerList);
 
+  const handleDelete = () => {
+    console.log('DELETE CLICK');
+  }
+
   return (
     <div>
-      <table>
+      <table id="ownersTable">
         <thead>
           <tr>
             <td>First Name</td>
@@ -22,7 +27,9 @@ function ManageOwnersTable() {
                 <td>{owner[2]}</td>
                 <td>{owner[3]}</td>
                 <td>{owner[0]}</td>
-                <td></td>
+                <td>
+                  <button onClick={handleDelete}>DELETE</button>
+                </td>
               </tr>
             )
           })}
