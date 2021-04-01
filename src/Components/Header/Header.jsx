@@ -5,6 +5,7 @@ function Header () {
 
   return(
     <div>
+      <h1>Pet Hotel!</h1>
       <Nav />
     </div>
   )

@@ -4,6 +4,13 @@ import {useDispatch} from 'react-redux';
 import Dashboard from '../Dashboard/Dashboard';
 import Header from '../Header/Header';
 import ManageOwners from '../ManageOwners/ManageOwners';
+import {
+  HashRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+} from 'react-router-dom';
+
 
 function App() {
   // use dispatch
@@ -16,14 +23,23 @@ function App() {
   }, []);
 
   return (
-   <div>
-    <h1>testing stuff for now</h1>
-    <Header />
+    <Router>
+      <div>
 
-    <Dashboard />
+        <Header />
+        <br />
+        <br />
 
-    <ManageOwners />
-   </div>
+      
+        <Route path='/' exact>
+          <Dashboard />
+        </Route>
+
+        <Route path='/owners' exact>
+          <ManageOwners />
+        </Route>
+      </div>
+   </Router>
   );
 }
 
