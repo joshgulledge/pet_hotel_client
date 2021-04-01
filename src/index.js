@@ -6,7 +6,7 @@ import createSagaMiddleware from 'redux-saga';
 import logger from 'redux-logger';
 import axios from 'axios';
 import {takeEvery, put} from 'redux-saga/effects';
-import App from './App';
+import App from './Components/App/App';
 
 function* rootSaga (action) {
   yield takeEvery('FETCH_OWNER_LIST', fetchOwnerList)
