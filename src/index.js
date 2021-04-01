@@ -10,7 +10,20 @@ import App from './Components/App/App';
 
 function* rootSaga (action) {
   yield takeEvery('FETCH_OWNER_LIST', fetchOwnerList)
+
+  yield takeEvery('ADD_OWNER', addOwner)
 }; // end rootSaga
+
+function* addOwner(action) {
+  try{
+    yield axios.post('/api/owner/add', action.payload);
+
+    yield put({type: 'FETCH_OWNER_LIST'});
+  }
+  catch (err) {
+    console.log('Error adding owner.', err);
+  }
+} // end addOwner
 
 function* fetchOwnerList () {
   try {
