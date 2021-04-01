@@ -9,8 +9,19 @@ import {takeEvery, put} from 'redux-saga/effects';
 import App from './Components/App/App';
 
 function* rootSaga (action) {
-  yield takeEvery('FETCH_OWNER_LIST', fetchOwnerList)
+  yield takeEvery('FETCH_OWNER_LIST', fetchOwnerList);
+  yield takeEvery('ADD_PET', addPet)
 }; // end rootSaga
+
+function* addPet (action) {
+  try {
+    yield axios.post('/api/pets/add', action.payload);
+
+  }
+  catch (err) {
+    console.log('something happened in the add pet saga 💥', err);
+  }
+}; // end addPet
 
 function* fetchOwnerList () {
   try {
