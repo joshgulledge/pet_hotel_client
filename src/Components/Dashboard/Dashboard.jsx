@@ -4,7 +4,9 @@ function Dashboard () {
 
   return(
     <div>
+
       <AddPetForm />
+
     </div>
   )
 }; // end Dashboard

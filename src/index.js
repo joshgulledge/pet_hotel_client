@@ -10,6 +10,7 @@ import App from './Components/App/App';
 
 function* rootSaga (action) {
   yield takeEvery('FETCH_OWNER_LIST', fetchOwnerList);
+  yield takeEvery('ADD_OWNER', addOwner)
   yield takeEvery('ADD_PET', addPet)
 }; // end rootSaga
 
@@ -22,6 +23,17 @@ function* addPet (action) {
     console.log('something happened in the add pet saga 💥', err);
   }
 }; // end addPet
+
+function* addOwner(action) {
+  try{
+    yield axios.post('/api/owner/add', action.payload);
+
+    yield put({type: 'FETCH_OWNER_LIST'});
+  }
+  catch (err) {
+    console.log('Error adding owner.', err);
+  }
+} // end addOwner
 
 function* fetchOwnerList () {
   try {
