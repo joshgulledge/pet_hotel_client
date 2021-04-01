@@ -12,6 +12,7 @@ function* rootSaga (action) {
   yield takeEvery('FETCH_OWNER_LIST', fetchOwnerList);
   yield takeEvery('ADD_OWNER', addOwner)
   yield takeEvery('ADD_PET', addPet)
+  yield takeEvery('DELETE_OWNER', deleteOwner)
 }; // end rootSaga
 
 function* addPet (action) {
@@ -34,6 +35,17 @@ function* addOwner(action) {
     console.log('Error adding owner.', err);
   }
 } // end addOwner
+
+function* deleteOwner(action) {
+  try {
+    yield axios.delete(`/api/owner/delete/${action.payload}`)
+
+    yield put({type: 'FETCH_OWNER_LIST'})
+  }
+  catch (err) {
+    console.log('Error Deleting', err);
+  }
+}
 
 function* fetchOwnerList () {
   try {
